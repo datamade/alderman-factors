@@ -1,0 +1,23 @@
+{
+ "name": "Chicago City Council",
+ "children": [
+  {
+   "name": "",
+   "children": [
+    {
+     "name": "",
+     "children": [
+      {"name": "Burns"},
+      {
+        "name" : "",
+        "children" : [
+          {"name" : "Osterman"},
+          {"name" : "Graham"}
+        ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
