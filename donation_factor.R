@@ -1,6 +1,5 @@
 library(RMySQL)
 library(Matrix)
-library(homals)
 library(ape)
 
 con <- dbConnect(MySQL(), dbname="contributions")
@@ -25,16 +24,12 @@ donors <- dbGetQuery(con, paste("SELECT ",
                                 "  RIGHT JOIN donors ",
                                 "  USING(donor_id)) as e_map ", 
                                 " USING (donor_id) ",
-                                #" WHERE date_recieved >= '2007' ",
-                                #" AND date_recieved <= '2011' ",
                                 " GROUP BY canon_id, recipient_id) ",
                                 "AS donation_totals ",
                                 "WHERE donors.donor_id = donation_totals.canon_id"))
 
 
 
-
-#council_donors <- dbGetQuery(con, "SELECT
 
 dbDisconnect(con)
 
@@ -113,10 +108,8 @@ council_donors[council_donors$recipient_id == 23607, 'recipient_id'] <- 22524
 council_donors[council_donors$recipient_id == 19733, 'recipient_id'] <- 14501
 council_donors[council_donors$recipient_id == 14968, 'recipient_id'] <- 6555
 
-donor_names <- table(council_donors$name)
 
-#repeat_donors <- names(donor_names[donor_names > 3])
-#council_donors <- council_donors[council_donors$name %in% repeat_donors, ]
+donor_names <- table(council_donors$name)
 
 council_donors$name <- factor(council_donors$name)
 council_donors$recipient_id <- factor(council_donors$recipient_id)
@@ -124,13 +117,11 @@ council_donors$recipient_id <- factor(council_donors$recipient_id)
 M <- sparseMatrix(i=as.numeric(council_donors$name),
                   j=as.numeric(council_donors$recipient_id))
 
-
+# this fit is probabaly the data object that we would want to
+# serialize to feed to d3
 fit <- hclust((dist(t(M), method="binary")-0.95)/0.05, method="ward")
 
 fit$labels <- last_names
-#fit$labels <- levels(council_donors$recipient_id)
-
-plot(fit)
 
 pdf()
 
