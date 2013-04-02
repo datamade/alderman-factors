@@ -1,6 +1,7 @@
 library(RMySQL)
 library(Matrix)
 library(homals)
+library(ape)
 
 con <- dbConnect(MySQL(), dbname="contributions")
 
@@ -24,8 +25,8 @@ donors <- dbGetQuery(con, paste("SELECT ",
                                 "  RIGHT JOIN donors ",
                                 "  USING(donor_id)) as e_map ", 
                                 " USING (donor_id) ",
-                                " WHERE date_recieved >= '2007' ",
-                                " AND date_recieved <= '2011' ",
+                                #" WHERE date_recieved >= '2007' ",
+                                #" AND date_recieved <= '2011' ",
                                 " GROUP BY canon_id, recipient_id) ",
                                 "AS donation_totals ",
                                 "WHERE donors.donor_id = donation_totals.canon_id"))
@@ -90,6 +91,15 @@ council_committees = c(
   14156 # zalewski, mike
   )
 
+last_names <- c("Mell", "O'Connor", "Burke", "Moore", "Suarez",
+"Munoz", "Maldonado", "Laurino", "Burnett", "Austin", "Solis",
+"Zalewski", "Hairston", "Pope", "Beale", "Chandler", "Osterman",
+"Mitts", "Thomas", "Thompson", "Graham", "Dowell", "Brookins",
+"Colon", "Tunney", "Reboyras", "Cardenas", "Balcer", "Reilly",
+"Smith", "Cappleman", "Sposato", "Cochran", "Waguespack", "Lane",
+"Harris", "Jackson", "Foulkes", "Mary O'Connor", "Burns", "Moreno",
+"Fioretti", "Pawar", "Arena", "Sawyer", "O'Shea", "Silverstein",
+"Cullerton", "Ervin", "Quinn")
 
 council_donors <- donors[donors$recipient_id %in% council_committees, ]
 
@@ -98,29 +108,33 @@ council_donors[council_donors$recipient_id == 20626, 'recipient_id'] <- 17003
 council_donors[council_donors$recipient_id == 23005, 'recipient_id'] <- 14947
 council_donors[council_donors$recipient_id == 18010, 'recipient_id'] <- 17037
 council_donors[council_donors$recipient_id == 19819, 'recipient_id'] <- 21102
-council_donors[council_donors$recipient_id == 22976, 'recipient_id'] <- 14917
+council_donors[council_donors$recipient_id == 22976, 'recipient_id'] <- 14971
 council_donors[council_donors$recipient_id == 23607, 'recipient_id'] <- 22524
 council_donors[council_donors$recipient_id == 19733, 'recipient_id'] <- 14501
 council_donors[council_donors$recipient_id == 14968, 'recipient_id'] <- 6555
 
 donor_names <- table(council_donors$name)
-repeat_donors <- names(donor_names[donor_names > 3])
 
-council_donors <- council_donors[council_donors$name %in% repeat_donors, ]
+#repeat_donors <- names(donor_names[donor_names > 3])
+#council_donors <- council_donors[council_donors$name %in% repeat_donors, ]
 
 council_donors$name <- factor(council_donors$name)
 council_donors$recipient_id <- factor(council_donors$recipient_id)
 
 M <- sparseMatrix(i=as.numeric(council_donors$name),
                   j=as.numeric(council_donors$recipient_id))
-                  
-D <- as.data.frame(t(as.matrix(M)))
-names(D) <- levels(council_donors$name)
-rownames(D) <- levels(council_donors$recipient_id)
 
-S <- homals(D, ndim=3)
-plot3d(S, plot.type = "objplot", sphere = FALSE, bgpng = NULL)
 
-plot(S$v[,1], S$v[,2], xlim=c(0,0.15), ylim=c(-.05, .10))
+fit <- hclust((dist(t(M), method="binary")-0.95)/0.05, method="ward")
 
+fit$labels <- last_names
+#fit$labels <- levels(council_donors$recipient_id)
+
+plot(fit)
+
+pdf()
+
+plot(as.phylo(fit), type="fan")
+
+dev.off()
 
