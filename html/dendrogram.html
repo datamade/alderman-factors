@@ -12,7 +12,7 @@
       }
 
       .node {
-        font: 10px sans-serif;
+        font: 15px sans-serif;
       }
 
       .link {
@@ -28,10 +28,10 @@
     <script type="text/javascript">
 
       var width = 960,
-          height = 2200;
+          height = 1200;
 
       var cluster = d3.layout.cluster()
-          .size([height, width - 160]);
+          .size([height, width - 260]);
 
       var diagonal = d3.svg.diagonal()
           .projection(function(d) { return [d.y, d.x]; });
