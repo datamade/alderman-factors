@@ -1,23 +1,395 @@
 {
- "name": "Chicago City Council",
- "children": [
-  {
-   "name": "",
-   "children": [
-    {
-     "name": "",
-     "children": [
-      {"name": "Burns"},
-      {
-        "name" : "",
-        "children" : [
-          {"name" : "Osterman"},
-          {"name" : "Graham"}
-        ]
-      }
-     ]
-    }
-   ]
-  }
- ]
+    "name": "",
+    "children": [
+        {
+            "name": "",
+            "children": [
+                {
+                    "name": "",
+                    "children": [
+                        {
+                            "name": "Burns"
+                        },
+                        {
+                            "name": "",
+                            "children": [
+                                {
+                                    "name": "Osterman"
+                                },
+                                {
+                                    "name": "Graham"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "",
+                    "children": [
+                        {
+                            "name": "",
+                            "children": [
+                                {
+                                    "name": "",
+                                    "children": [
+                                        {
+                                            "name": "Pope"
+                                        },
+                                        {
+                                            "name": "",
+                                            "children": [
+                                                {
+                                                    "name": "Austin"
+                                                },
+                                                {
+                                                    "name": "Beale"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "",
+                                    "children": [
+                                        {
+                                            "name": "Zalewski"
+                                        },
+                                        {
+                                            "name": "Mitts"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "",
+                            "children": [
+                                {
+                                    "name": "",
+                                    "children": [
+                                        {
+                                            "name": "Thompson"
+                                        },
+                                        {
+                                            "name": "",
+                                            "children": [
+                                                {
+                                                    "name": "Thomas"
+                                                },
+                                                {
+                                                    "name": "Harris"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "",
+                                    "children": [
+                                        {
+                                            "name": "",
+                                            "children": [
+                                                {
+                                                    "name": "Dowell"
+                                                },
+                                                {
+                                                    "name": "Cochran"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "",
+                                            "children": [
+                                                {
+                                                    "name": "Sawyer"
+                                                },
+                                                {
+                                                    "name": "",
+                                                    "children": [
+                                                        {
+                                                            "name": "Hairston"
+                                                        },
+                                                        {
+                                                            "name": "Brookins"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "",
+            "children": [
+                {
+                    "name": "",
+                    "children": [
+                        {
+                            "name": "",
+                            "children": [
+                                {
+                                    "name": "Balcer"
+                                },
+                                {
+                                    "name": "",
+                                    "children": [
+                                        {
+                                            "name": "Lane"
+                                        },
+                                        {
+                                            "name": "Foulkes"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "",
+                            "children": [
+                                {
+                                    "name": "",
+                                    "children": [
+                                        {
+                                            "name": "Quinn"
+                                        },
+                                        {
+                                            "name": "",
+                                            "children": [
+                                                {
+                                                    "name": "Sposato"
+                                                },
+                                                {
+                                                    "name": "",
+                                                    "children": [
+                                                        {
+                                                            "name": "Chandler"
+                                                        },
+                                                        {
+                                                            "name": "",
+                                                            "children": [
+                                                                {
+                                                                    "name": "Jackson"
+                                                                },
+                                                                {
+                                                                    "name": "O'Shea"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "",
+                                    "children": [
+                                        {
+                                            "name": "",
+                                            "children": [
+                                                {
+                                                    "name": "",
+                                                    "children": [
+                                                        {
+                                                            "name": "Mary O'Connor"
+                                                        },
+                                                        {
+                                                            "name": "Cullerton"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "",
+                                                    "children": [
+                                                        {
+                                                            "name": "Silverstein"
+                                                        },
+                                                        {
+                                                            "name": "Ervin"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "",
+                                            "children": [
+                                                {
+                                                    "name": "",
+                                                    "children": [
+                                                        {
+                                                            "name": "Pawar"
+                                                        },
+                                                        {
+                                                            "name": "",
+                                                            "children": [
+                                                                {
+                                                                    "name": "Cappleman"
+                                                                },
+                                                                {
+                                                                    "name": "Arena"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "",
+                                                    "children": [
+                                                        {
+                                                            "name": "Smith"
+                                                        },
+                                                        {
+                                                            "name": "",
+                                                            "children": [
+                                                                {
+                                                                    "name": "Waguespack"
+                                                                },
+                                                                {
+                                                                    "name": "Moreno"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "",
+                    "children": [
+                        {
+                            "name": "",
+                            "children": [
+                                {
+                                    "name": "",
+                                    "children": [
+                                        {
+                                            "name": "Suarez"
+                                        },
+                                        {
+                                            "name": "Reboyras"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "",
+                                    "children": [
+                                        {
+                                            "name": "",
+                                            "children": [
+                                                {
+                                                    "name": "Munoz"
+                                                },
+                                                {
+                                                    "name": "Cardenas"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "",
+                                            "children": [
+                                                {
+                                                    "name": "Maldonado"
+                                                },
+                                                {
+                                                    "name": "Colon"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "",
+                            "children": [
+                                {
+                                    "name": "",
+                                    "children": [
+                                        {
+                                            "name": "",
+                                            "children": [
+                                                {
+                                                    "name": "Moore"
+                                                },
+                                                {
+                                                    "name": "Tunney"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "name": "",
+                                            "children": [
+                                                {
+                                                    "name": "",
+                                                    "children": [
+                                                        {
+                                                            "name": "Burke"
+                                                        },
+                                                        {
+                                                            "name": "Burnett"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "name": "",
+                                                    "children": [
+                                                        {
+                                                            "name": "Reilly"
+                                                        },
+                                                        {
+                                                            "name": "Fioretti"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "name": "",
+                                    "children": [
+                                        {
+                                            "name": "Solis"
+                                        },
+                                        {
+                                            "name": "",
+                                            "children": [
+                                                {
+                                                    "name": "O'Connor"
+                                                },
+                                                {
+                                                    "name": "",
+                                                    "children": [
+                                                        {
+                                                            "name": "Mell"
+                                                        },
+                                                        {
+                                                            "name": "Laurino"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
 }

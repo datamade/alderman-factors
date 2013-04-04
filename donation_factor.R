@@ -129,3 +129,32 @@ plot(as.phylo(fit), type="fan")
 
 dev.off()
 
+D <- as.dendrogram(fit)
+
+walkDown <- function(node, level) {
+  if (length(node) == 1) { 
+    #writeToFile(level)
+    #writeToFile('leaf')
+    writeToFile(paste(makeNstr(" ", level), '{"name": "', attr(node, 'label'), '"},', sep=""))
+  }
+
+  else {
+    writeToFile(paste(makeNstr(" ", level), "{"))
+    writeToFile(paste(makeNstr(" ", level), '"name": "",'))
+    writeToFile(paste(makeNstr(" ", level), '"children": ['))
+
+    #writeToFile(node)
+    for (i in 1:length(node)) {
+      walkDown(node[[i]], level+1)
+    }
+    writeToFile(paste(makeNstr(" ", level), "],"))
+    writeToFile(paste(makeNstr(" ", level), "}"))
+
+  }
+}
+
+writeToFile <- function(text) {
+  cat(text, file = "aldermen.json", sep="\n", append=TRUE)
+}
+
+walkDown(D, 0)
