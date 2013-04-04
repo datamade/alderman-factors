@@ -1,6 +1,7 @@
 library(RMySQL)
 library(Matrix)
 library(ape)
+library(Hmisc)
 
 con <- dbConnect(MySQL(), dbname="contributions")
 
@@ -131,11 +132,17 @@ dev.off()
 
 D <- as.dendrogram(fit)
 
-walkDown <- function(node, level) {
-  if (length(node) == 1) { 
-    #writeToFile(level)
-    #writeToFile('leaf')
-    writeToFile(paste(makeNstr(" ", level), '{"name": "', attr(node, 'label'), '"},', sep=""))
+walkDown <- function(node, level, younger_sibling) {
+  if (length(node) == 1) {
+    leaf_name = paste(makeNstr(" ", level),
+                      '{"name": "',
+                      attr(node, 'label'),
+                      '"}',
+                      sep="")
+    if (younger_sibling) {
+      leaf_name = paste(leaf_name, ",")
+    }
+    writeToFile(leaf_name)
   }
 
   else {
@@ -145,16 +152,29 @@ walkDown <- function(node, level) {
 
     #writeToFile(node)
     for (i in 1:length(node)) {
-      walkDown(node[[i]], level+1)
+      if (i < length(node)) {
+        younger_child = TRUE}
+      else {
+        younger_child = FALSE
+      }
+          
+      walkDown(node[[i]], level+1, younger_child)
     }
-    writeToFile(paste(makeNstr(" ", level), "],"))
-    writeToFile(paste(makeNstr(" ", level), "}"))
-
+    
+    writeToFile(paste(makeNstr(" ", level), "]"))
+    if (younger_sibling) {
+      writeToFile(paste(makeNstr(" ", level), "},"))
+    }
+    else {
+      writeToFile(paste(makeNstr(" ", level), "}"))
+    }
   }
 }
 
 writeToFile <- function(text) {
-  cat(text, file = "aldermen.json", sep="\n", append=TRUE)
+  cat(text, file = "tree/aldermen.json", sep="\n", append=TRUE)
 }
 
-walkDown(D, 0)
+cat('', file = "tree/aldermen.json")
+
+walkDown(D, 0, FALSE)
