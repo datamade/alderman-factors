@@ -118,7 +118,8 @@ totals <- aggregate(council_donors$totals,
 write.table(data.frame("alderman", "counts"),
             "donation_counts.csv",
             row.names=FALSE,
-            col.names=FALSE)
+            col.names=FALSE,
+            sep= ",")
 for (alderman in last_names) {
   alderman_hist <- hist(council_donors[council_donors$recipient_id == alderman,
                                        'totals'],
@@ -128,5 +129,6 @@ for (alderman in last_names) {
               "donation_counts.csv",
               append = TRUE,
               row.names = FALSE,
-              col.names = FALSE)
+              col.names = FALSE,
+              sep=",")
 }
