@@ -33,12 +33,14 @@
                 %a{:href => "#about"} About
 
     .container
-      %h1 Chicago Alderman Factors
-      %p
-        The factors
-    
+      =yield
+
+
     = include_javascript :jquery
     = include_javascript "bootstrap.min"
+    = include_javascript "d3.min"
+    = include_javascript "jquery.dataTables.min"
+    = include_javascript "accounting.min"
     = content :javascripts
 
     = include_javascript :"analytics_lib" if production?

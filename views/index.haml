@@ -1,3 +1,52 @@
+
+- content_for :javascripts do
+  :javascript
+
+    d3.csv("/council_raising.csv", function(rows) {
+
+      var row = "<tr>\
+        <td>" + rows.ward + "</td>\
+        <td>" + rows.alderman + "</td>\
+        <td>\
+          <strong>" + accounting.formatMoney(rows.raised) + "</strong>\
+          <div class='progress progress-striped'>\
+            <div class='bar' style='width: " + (rows.raised/1029198.30)*100 + "%;'></div>\
+          </div>\
+        </td>\
+        </tr>";
+
+      $("#council_raising_rows").append(row);
+
+      // $('#council_raising').dataTable( {
+      //     "aaSorting": [ [0,'asc'] ],
+      //     "aoColumns": [
+      //         null,
+      //         null,
+      //         { "bSortable": false }
+      //     ],
+      //     "bFilter": false,
+      //     "bInfo": false,
+      //     "bPaginate": false
+      // } );
+
+    }, function(error, rows) {
+      // console.log(rows);
+    });
+
+
+
+
+
 .row-fluid
   .span12
-    %p Hello world!
+    %h1 
+      Chicago Alderman
+      %small Campaign Contributions
+
+    %table.table#council_raising
+      %thead
+        %tr
+          %th Ward
+          %th Alderman
+          %th Amount raised in 2010
+      %tbody#council_raising_rows
