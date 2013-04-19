@@ -10,7 +10,7 @@
   :javascript
 
     queue()
-        .defer(d3.csv, "/council_raising.csv", function(d) { addRow(d); })
+        .defer(d3.csv, "/data/council_raising.csv", function(d) { addRow(d); })
         .await(ready);
 
     function addRow(d) {
