@@ -2,20 +2,21 @@
 - content_for :javascripts do
 
   = include_javascript "d3.min"
-  = include_javascript "jquery.dataTables.min"
-  = include_javascript "jquery.dataTables.sorting"
   = include_javascript "queue.min"
   = include_javascript "accounting.min"
+  = include_javascript "jquery.dataTables.min"
+  = include_javascript "jquery.dataTables.sorting"
+  = include_javascript "jquery.sparkline.min"
 
   :javascript
 
     queue()
         .defer(d3.csv, "/data/council_raising.csv", function(d) { addRow(d); })
+        .defer(d3.csv, "/data/donation_counts.csv", function(d) { addSparkline(d); })
         .await(ready);
 
     function addRow(d) {
-      var row = "<tr>\
-        <td>" + d.ward + "</td>\
+      var row = "<tr id='alderman-" + convertToSlug(d.alderman) + "'>\
         <td>" + d.alderman + "</td>\
         <td>\
           <strong>" + accounting.formatMoney(d.raised) + "</strong>\
@@ -23,25 +24,52 @@
             <div class='bar' style='width: " + (d.raised/1029198.30)*100 + "%;'></div>\
           </div>\
         </td>\
+        <td>\
+          <span id='alderman-" + convertToSlug(d.alderman) + "-sparkline' class='sparkline'></span>\
+        </td>\
         </tr>";
 
       $("#council_raising_rows").append(row);
+    }
+
+    function addSparkline(d) {
+      $("#alderman-" + convertToSlug(d.alderman) + "-sparkline").attr("values", d.counts);
     }
 
     function ready(){
 
       // initialize datatables
       $('#council_raising').dataTable( {
-          "aaSorting": [ [2,'desc'] ],
+          "aaSorting": [ [1,'desc'] ],
           "aoColumns": [
               null,
-              null,
-              { "sType": "num-html" }
+              { "sType": "num-html" },
+              { "bSortable": false }
           ],
           "bFilter": false,
           "bInfo": false,
           "bPaginate": false
       } );
+
+      // Sparklines
+      $(".sparkline").sparkline("html", {
+        chartRangeMin: 0,
+        fillColor: "#ddf2fb",
+        height: "40px",
+        lineColor: "#518fc9",
+        lineWidth: 1,
+        minSpotColor: "#0b810b",
+        maxSpotColor: "#c10202",
+        spotColor: false,
+        spotRadius: 2,
+        width: "300px"
+      });
+    }
+
+    //converts a text in to a URL slug
+    function convertToSlug(text) {
+      if (text == undefined) return '';
+      return (text+'').replace(/ /g,'-').replace(/[^\w-]+/g,'');
     }
 
 
@@ -58,9 +86,9 @@
       %thead
         %tr
           %th 
-            %span Ward
-          %th 
             %span Alderman
           %th 
             %span Amount raised in 2010
+          %th
+            %span Donation distribution
       %tbody#council_raising_rows
