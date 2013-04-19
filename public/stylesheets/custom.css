@@ -15,3 +15,9 @@ th.sorting_desc span {
   background: url(/images/sort-down.png) no-repeat 100% 50%;
   padding-right: 10px;
 }
+
+/* Axis */
+.xaxis { clear: both; color: #777; font-weight: normal; list-style: none; margin-bottom: 25px; margin-right: 9px; font-size: 9px; width:300px;}
+.xaxis .tick { float: left; margin: 0; text-align: center; width: 33.33%; }
+.xaxis .tick.first { text-align: left; }
+.xaxis .tick.last { float: right; text-align: right; }
