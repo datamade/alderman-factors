@@ -21,3 +21,8 @@ th.sorting_desc span {
 .xaxis .tick { float: left; margin: 0; text-align: center; width: 33.33%; }
 .xaxis .tick.first { text-align: left; }
 .xaxis .tick.last { float: right; text-align: right; }
+
+/* DataTables */
+.datatable { clear: both; }
+.dataTables_filter { float: left; margin-bottom: 1em; }
+.dataTables_filter input { padding: 0.3em; width: 15em; }

@@ -51,7 +51,6 @@
               { "sType": "num-html" },
               { "bSortable": false }
           ],
-          "bFilter": false,
           "bInfo": false,
           "bPaginate": false
       } );
@@ -77,11 +76,22 @@
       return (text+'').replace(/ /g,'-').replace(/[^\w-]+/g,'');
     }
 
+%h1 
+  Chicago Alderman
+  %small Campaign contribution amounts
+
+.row-fluid
+  .span8
+    %p
+      Using <a href='http://open-city.github.io/dedupe/doc/mysql_example.html'>deduplicated</a> Illinois political campaign contributions, we can determine how much money each alderman raised in the 2010 election, as well as the distribution of the donation amounts.
+
+    %p
+      <strong>Search</strong> or <strong>browse</strong> for your alderman below.
+
 .row-fluid
   .span12
-    %h1 
-      Chicago Alderman
-      %small Campaign contribution amounts
+
+    %hr
 
     %table.table#council_raising
       %thead
