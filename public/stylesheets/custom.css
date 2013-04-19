@@ -5,3 +5,13 @@ body {
 #mapCanvas img {
   max-width: none;
 }
+
+th.sorting_asc span {
+  background: url(/images/sort-up.png) no-repeat 100% 50%;
+  padding-right: 10px;
+}
+
+th.sorting_desc span {
+  background: url(/images/sort-down.png) no-repeat 100% 50%;
+  padding-right: 10px;
+}

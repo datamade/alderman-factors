@@ -1,37 +1,48 @@
 
 - content_for :javascripts do
+
+  = include_javascript "d3.min"
+  = include_javascript "jquery.dataTables.min"
+  = include_javascript "jquery.dataTables.sorting"
+  = include_javascript "queue.min"
+  = include_javascript "accounting.min"
+
   :javascript
 
-    d3.csv("/council_raising.csv", function(rows) {
+    queue()
+        .defer(d3.csv, "/council_raising.csv", function(d) { addRow(d); })
+        .await(ready);
 
+    function addRow(d) {
       var row = "<tr>\
-        <td>" + rows.ward + "</td>\
-        <td>" + rows.alderman + "</td>\
+        <td>" + d.ward + "</td>\
+        <td>" + d.alderman + "</td>\
         <td>\
-          <strong>" + accounting.formatMoney(rows.raised) + "</strong>\
-          <div class='progress progress-striped'>\
-            <div class='bar' style='width: " + (rows.raised/1029198.30)*100 + "%;'></div>\
+          <strong>" + accounting.formatMoney(d.raised) + "</strong>\
+          <div class='progress'>\
+            <div class='bar' style='width: " + (d.raised/1029198.30)*100 + "%;'></div>\
           </div>\
         </td>\
         </tr>";
 
       $("#council_raising_rows").append(row);
+    }
 
-      // $('#council_raising').dataTable( {
-      //     "aaSorting": [ [0,'asc'] ],
-      //     "aoColumns": [
-      //         null,
-      //         null,
-      //         { "bSortable": false }
-      //     ],
-      //     "bFilter": false,
-      //     "bInfo": false,
-      //     "bPaginate": false
-      // } );
+    function ready(){
 
-    }, function(error, rows) {
-      // console.log(rows);
-    });
+      // initialize datatables
+      $('#council_raising').dataTable( {
+          "aaSorting": [ [2,'desc'] ],
+          "aoColumns": [
+              null,
+              null,
+              { "sType": "num-html" }
+          ],
+          "bFilter": false,
+          "bInfo": false,
+          "bPaginate": false
+      } );
+    }
 
 
 
@@ -46,7 +57,10 @@
     %table.table#council_raising
       %thead
         %tr
-          %th Ward
-          %th Alderman
-          %th Amount raised in 2010
+          %th 
+            %span Ward
+          %th 
+            %span Alderman
+          %th 
+            %span Amount raised in 2010
       %tbody#council_raising_rows
